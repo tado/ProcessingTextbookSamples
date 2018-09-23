@@ -8,7 +8,8 @@ void draw() {
     if (mouseButton == LEFT) {
       ellipse(mouseX, mouseY, 100, 100); //円を描画
     } else if (mouseButton == RIGHT) {
-      triangle(mouseX, mouseY - 60, mouseX - 50, mouseY + 30, mouseX + 50, mouseY + 30); //三角形を描画
+      triangle(mouseX, mouseY - 60, mouseX - 50, 
+        mouseY + 30, mouseX + 50, mouseY + 30); //三角形を描画
     } else {
       //×を描画
       line(mouseX - 50, mouseY - 50, mouseX + 50, mouseY + 50); 

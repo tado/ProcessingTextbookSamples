@@ -27,7 +27,7 @@ void accelerateBall() {
 }
 void bounceBall() {
   float centerYLowest = height - radius; //ボールが床に接しているとき・・・
-  //のボール中心のy座標
+                                         //のボール中心のy座標
   if (centerY < centerYLowest) return; //床より上に浮いていれば何もしない
   centerY = centerYLowest; //中心高さを調整しボールが床に接するようにする
   dy = -dy; //速度を下向き（正のdy）から上向き（負のdy）に変更する

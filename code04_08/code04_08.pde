@@ -8,6 +8,7 @@ void draw() {
     float y = mouseY + 10 * j;
     for (int i = 0; i < 20; i++) {
       float x = mouseX + 10 * i;
+      if (width - 20 < x) break; //もしウィンドウ右端近くなら抜ける
       ellipse(x, y, 10, 10); //円を描画
     }
   }
