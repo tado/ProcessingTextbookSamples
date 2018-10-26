@@ -1,10 +1,10 @@
-PImage map;
-int state;
-final int STANBY = 0;
+final int STANDBY = 0;
 final int GAMESTART = 1;
 final int GAMEFINISH = 2;
+int state = STANDBY;
 int startTime;
 int finishTime;
+PImage map;
 
 void setup(){
   size(1024,1024);
@@ -58,7 +58,7 @@ void drawMap(){
 void drawText(){
   fill(254,0,0);
   switch(state){
-    case STANBY: 
+    case STANDBY: 
       text("Click red circle for start race.",200,550);
       break;
     case GAMESTART: 
@@ -66,7 +66,7 @@ void drawText(){
       if(get(mouseX,mouseY)==color(255)){
         fill(255,0,0);
         rect(0,0,width,height);
-        state = STANBY;
+        state = STANDBY;
       }
       if(get(mouseX,mouseY)==color(0,0,255)){
         state = GAMEFINISH;
