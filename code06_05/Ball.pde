@@ -5,18 +5,12 @@ class Ball {
   private float dy;
   float radius = 25.0;
   float diameter = radius * 2.0;
-  void update() {
-    move();
-    checkBounceFloor();
-    checkHitWalls();
-    accelerate();
-  }
-  void draw() {
+  void drawBall() {
     fill(70);
     ellipse(centerX, centerY, diameter, diameter);
-    drawHighlight();
+    drawBallHighlight();
   }
-  void drawHighlight() {
+  void drawBallHighlight() {
     fill(255);
     float highlightCenterX = centerX;
     float highlightCenterY = centerY - radius / 1.4;
@@ -24,7 +18,7 @@ class Ball {
     float highlightYSize = highlightXSize / 1.3;
     ellipse(highlightCenterX, highlightCenterY, highlightXSize, highlightYSize);
   }
-  void move() {
+  void moveBall() {
     centerX += dx; //円の中心を右に移動する
     centerY += dy; //円の中心を下に移動する
   }
@@ -39,7 +33,7 @@ class Ball {
       dx = -dx;
     }
   }
-  void checkBounceFloor() {
+  void bounceBall() {
     float centerYFloor  = height - radius; //ボールが床に乗るときの中心y座標
     if (centerY < centerYFloor) return; //ボールが床より上なら何もしない
     centerY = centerYFloor;
@@ -52,7 +46,7 @@ class Ball {
     else if (dx < 0.0) dx += frictionX; //左向きの場合は右向きに減速
     else dx -= frictionX; //右向きの場合は左向きに減速
   }
-  void accelerate() {
+  void accelerateBall() {
     float gravity = 10.0; //１フレームあたりの重力加速度に相当する画素数
     dy += gravity; //下向きに加速する
   }
@@ -60,16 +54,8 @@ class Ball {
     centerX = x;
     centerY = y;
   }
-  void setVelociry(float x, float y) {
+  void setVelocity(float x, float y) {
     dx = x;
     dy = y;
-  }
-  void changeSize(int k) {
-    float s = 1.2;
-    if (k == 'l') radius *= s;
-    else if (k == 's') radius /= s;
-    radius = min(max(1.0, radius), 200.0);
-    diameter = radius * 2;
-    println("直径：" + diameter);
   }
 }

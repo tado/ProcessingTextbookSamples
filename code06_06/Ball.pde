@@ -1,23 +1,16 @@
 class Ball {
-  protected float centerX = 30.0; 
-  protected float centerY = 70.0;
-  protected float radius = 25.0;
-  protected float diameter = radius * 2.0;
-  protected float dx = 0.0; //１フレームあたりの変位量（速度の水平成分）
-  protected float dy = 0.0; //１フレームあたりの変位量（速度の垂直成分）
-  protected color col = color(70);
-  void update() {
-    move();
-    checkBounceFloor();
-    checkHitWalls();
-    accelerate();
-  }
+  private float centerX;
+  private float centerY;
+  private float dx;
+  private float dy;
+  float radius = 25.0;
+  float diameter = radius * 2.0;
   void draw() {
-    fill(col);
+    fill(70);
     ellipse(centerX, centerY, diameter, diameter);
-    drawHighlight();
+    drawBallHighlight();
   }
-  void drawHighlight() {
+  void drawBallHighlight() {
     fill(255);
     float highlightCenterX = centerX;
     float highlightCenterY = centerY - radius / 1.4;
@@ -40,7 +33,7 @@ class Ball {
       dx = -dx;
     }
   }
-  void checkBounceFloor() {
+  void bounce() {
     float centerYFloor  = height - radius; //ボールが床に乗るときの中心y座標
     if (centerY < centerYFloor) return; //ボールが床より上なら何もしない
     centerY = centerYFloor;
@@ -64,16 +57,5 @@ class Ball {
   void setVelocity(float x, float y) {
     dx = x;
     dy = y;
-  }
-  void setRadius(float _radius){
-    radius = _radius;
-  }
-  void changeSize(int k) {
-    float s = 1.2;
-    if (k == 'l') radius *= s;
-    else if (k == 's') radius /= s;
-    radius = min(max(1.0, radius), 200.0);
-    diameter = radius * 2;
-    println("直径：" + diameter);
   }
 }

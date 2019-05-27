@@ -1,10 +1,11 @@
 class Ball {
-  private float centerX;
-  private float centerY;
-  private float dx;
-  private float dy;
+  float centerX = 30.0; 
+  float centerY = 70.0;
   float radius = 25.0;
   float diameter = radius * 2.0;
+  float dx = 10.0; //１フレームあたりの変位量（速度の水平成分）
+  float dy = 0.0; //１フレームあたりの変位量（速度の垂直成分）
+
   void drawBall() {
     fill(70);
     ellipse(centerX, centerY, diameter, diameter);
@@ -49,13 +50,5 @@ class Ball {
   void accelerateBall() {
     float gravity = 10.0; //１フレームあたりの重力加速度に相当する画素数
     dy += gravity; //下向きに加速する
-  }
-  void setCenter(float x, float y) {
-    centerX = x;
-    centerY = y;
-  }
-  void setVelociry(float x, float y) {
-    dx = x;
-    dy = y;
   }
 }

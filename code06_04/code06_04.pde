@@ -16,8 +16,10 @@ void update() {
   ball.accelerateBall();
 }
 void mouseDragged() { 
-  ball.setCenter(pmouseX, pmouseY);
-  ball.setVelociry(mouseX - pmouseX, mouseY - pmouseY);
+  ball.centerX = pmouseX;
+  ball.centerY = pmouseY;
+  ball.dx = mouseX - pmouseX;
+  ball.dy = mouseY - pmouseY;
 }
 void keyPressed() {
   float s = 1.2;

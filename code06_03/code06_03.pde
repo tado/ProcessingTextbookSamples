@@ -1,7 +1,6 @@
-Ball ball;
+Ball ball = new Ball();
 
 void setup() {
-  ball = new Ball();
   size(800, 600);
 }
 void draw() {

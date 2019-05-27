@@ -1,36 +1,29 @@
-final int maxBalls = 100;
-Ball[] ball = new Ball[maxBalls];
-int numBalls = 0;
+Ball ball;
 
 void setup() {
+  ball = new Ball();
   size(800, 600);
 }
 void draw() {
   background(128); 
-  update();
-  for (int i = 0; i < numBalls; i++) {
-    ball[i].draw();
-  }
+  update();//状態変更（更新）をまとめて呼び出す
+  ball.draw();//ボールを描く
 }
 void update() {
-  for (int i = 0; i < numBalls; i++) {
-    ball[i].update();
-  }
-}
-void mousePressed() {
-  numBalls = 0;
+  ball.move();//ボールを移動する
+  ball.bounce();//ボールを検査し床バウンド処理を行う
+  ball.checkHitWalls();//ボールを検査し壁打ち処理を行う
+  ball.accelerate();//ボールを加速する
 }
 void mouseDragged() { 
-  if (maxBalls <= numBalls) return;
-  if (numBalls % 2 == 1) ball[numBalls] = new Ball();
-  else ball[numBalls] = new LightBall();
-  ball[numBalls].setRadius(random(20, 60));
-  ball[numBalls].setCenter(mouseX, mouseY);
-  ball[numBalls].setVelocity(mouseX - pmouseX, mouseY - pmouseY);
-  numBalls++;
+  ball.setCenter(pmouseX, pmouseY);
+  ball.setVelocity(mouseX - pmouseX, mouseY - pmouseY);
 }
 void keyPressed() {
-  for (int i = 0; i < numBalls; i++) {
-    ball[i].changeSize(key);
-  }
+  float s = 1.2;
+  if (key == 'l') ball.radius *= s;
+  else if (key == 's') ball.radius /= s;
+  ball.radius = min(max(1.0, ball.radius), 200.0);
+  ball.diameter = ball.radius * 2;
+  println("直径：" + ball.diameter);
 }
