@@ -20,8 +20,8 @@ void mouseDragged() {
 }
 void keyPressed() {
   float s = 1.2;
-  if (key == 'l') ball.radius *= s;
-  else if (key == 's') ball.radius /= s;
+  if (key == 'l') radius *= s;
+  else if (key == 's') radius /= s;
   radius = min(max(1.0, radius), 200.0);
   diameter = radius * 2;
   println("直径：" + diameter);
