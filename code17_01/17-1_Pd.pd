@@ -1,0 +1,49 @@
+#N canvas 230 227 1112 330 10;
+#X obj 132 148 oscparse;
+#X obj 132 171 print parse-output;
+#X obj 132 113 netreceive -u -b;
+#X msg 144 86 listen 0;
+#X msg 11 88 1 2 3 foo 5;
+#X obj 11 113 oscformat dog cat;
+#X obj 521 94 oscformat cat horse pig;
+#X obj 521 128 oscparse;
+#X msg 690 223 disconnect;
+#X obj 682 250 netsend -u -b;
+#X obj 683 149 list prepend send;
+#X obj 683 174 list trim;
+#X obj 521 153 print reassembled;
+#X msg 691 199 connect localhost 12000;
+#X msg 521 25 1 2 3 4;
+#X msg 132 58 listen 11000;
+#X msg 549 48 4 2 ring necklace watch;
+#X text 774 252 UDPデータ送信　 パケット、バイナリの出力
+;
+#X text 777 225 送信を停止;
+#X text 843 198 UDPデータとしてポート12000番を開いて送信する
+;
+#X text 799 149 OSCパケットデータの先頭に"send"を付ける
+;
+#X text 758 174 先頭の"list"文字列を削除;
+#X text 668 96 リストデータをOSCパケットに変換;
+#X text 247 114 UDPデータ受信　 パケット、バイナリの出力
+;
+#X text 213 86 ポート監視を停止;
+#X text 225 59 ポート11000番を開いて監視;
+#X text 134 30 OSCネットワークから入力する;
+#X text 501 -12 OSCネットワークへ出力する;
+#X text 722 30 OSCネットワークへ出力する;
+#X connect 0 0 1 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 10 0;
+#X connect 6 0 7 0;
+#X connect 7 0 12 0;
+#X connect 8 0 9 0;
+#X connect 10 0 11 0;
+#X connect 11 0 9 0;
+#X connect 13 0 9 0;
+#X connect 14 0 6 0;
+#X connect 15 0 2 0;
+#X connect 16 0 6 0;
